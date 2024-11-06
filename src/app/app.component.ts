@@ -3,6 +3,8 @@ import { Component, getModuleFactory } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { LoginService } from './services/login/login.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,9 @@ import { LoginService } from './services/login/login.service';
   imports: [RouterOutlet,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
+  providers:[LoginService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -27,9 +30,8 @@ export class AppComponent {
     ){}
   
   ngOnInit(){
-    console.log("oi")
     this.loginForm = this.formBuilder.group({
-      username: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required]),
       password: new FormControl('', Validators.required),
 
     })
