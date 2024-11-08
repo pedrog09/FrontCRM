@@ -10,7 +10,7 @@ export class LoginService {
   }
 
   login(username:string, password:string){
-    return this.http.post('https://localhost:7132/api/Authentication', 
+    return this.http.post('http://localhost:5169/api/Authentication', 
       {
       "userName": username,
       "password": password

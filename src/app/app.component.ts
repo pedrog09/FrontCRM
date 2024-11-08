@@ -4,6 +4,8 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { RouterOutlet } from '@angular/router';
 import { LoginService } from './services/login/login.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @Component({
@@ -11,8 +13,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [RouterOutlet,
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    LoginComponent,
+    RegisterComponent
   ],
   providers:[LoginService],
   templateUrl: './app.component.html',
@@ -20,36 +22,4 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'FrontCRM';
-
-  loginForm!:FormGroup
-
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private cleitin: LoginService
-    ){}
-  
-  ngOnInit(){
-    this.loginForm = this.formBuilder.group({
-      username: new FormControl('', [Validators.required]),
-      password: new FormControl('', Validators.required),
-
-    })
-  }    
-  checkForm(){
-    console.log(this.loginForm)
-    if(!this.loginForm.valid){
-      return 
-    }
-    this.submit()
-
-  }
-
-  submit(){
-    this.cleitin.login(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value).subscribe({
-      next:(jwt:any)=>{console.log(jwt)},
-      error:(err)=>{alert(err)},
-      complete:()=>{},
-    })
-  }
 }
