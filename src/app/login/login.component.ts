@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../services/login/login.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -18,8 +20,10 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
     ){}
+
   
   ngOnInit(){
     this.loginForm = this.formBuilder.group({
@@ -38,9 +42,12 @@ export class LoginComponent {
 
   submit(){
     this.loginService.login(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value).subscribe({
-      next:(jwt:any)=>{console.log(jwt)},
+      next:(jwt:any)=>{
+        console.log(jwt);
+        this.router.navigate(['/summary']);
+      },
       error:(err)=>{console.log(err.status, err.message)},
     })
   }
-}
 
+}

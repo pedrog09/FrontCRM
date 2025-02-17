@@ -1,24 +1,21 @@
-
 <div class="w-100 h-100 row align-items-center">
     <div class="col-4 mx-auto">  
       <div [formGroup]="this.loginForm">
   
-          <img src="https://t3.ftcdn.net/jpg/05/12/70/90/360_F_512709095_o0bDOmbAUKf9ltb8Pw9eYdrkriemZ822.jpg" class="mb-4" height="57" width="72"/> 
-          <h1 class="h3 mb-3 fw-normal">Faça seu login!</h1>
-          <div class="form-floating ">
-              <input type="string" class="form-control" id="floatingInput" placeholder="Username" formControlName="username"/>
-              <label for="floatingInput">Username</label>
-          </div>
-          <div class="form-floating">
-              <input type="password" class="form-control" id="floatingInput" placeholder="Senha" formControlName="password"/>
-              <label for="floatingInput">Senha</label>
-          </div>
-          <div class="form-check texte-start my-3">
-              <input type="checkbox" class="form-check-input" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">Remember me</label>
-          </div>
-          <button class="btn btn-primary w-100 py-2" (click)="checkForm()">Sign in</button>
+          <img src="https://t3.ftcdn.net/jpg/05/12/70/90/360_F_512709090_3J9HZRZg4GmB8S6i0yY9wQ6Z8X6Z8X6Z.jpg" alt="Logo" class="mb-4" style="width: 100px;">
   
+          <div class="form-group mb-3">
+              <label for="username">Usuário</label>
+              <input type="text" class="form-control" id="username" formControlName="username" placeholder="Digite seu usuário">
+          </div>
+  
+          <div class="form-group mb-3">
+              <label for="password">Senha</label>
+              <input type="password" class="form-control" id="password" formControlName="password" placeholder="Digite sua senha">
+          </div>
+  
+          <button class="btn btn-primary w-100 mb-2" (click)="checkForm()">Entrar</button>
+          <button class="btn btn-outline-secondary w-100" routerLink="/register">Cadastrar</button>
       </div>
     </div>
-  </div>
+</div>
