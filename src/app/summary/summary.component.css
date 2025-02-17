@@ -1,15 +1,58 @@
 .summary-container {
   padding: 20px;
-  max-width: 800px;
   margin: 0 auto;
+  min-height: 100vh;
 }
 
-h1 {
+.sidebar {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  height: 100%;
+}
+
+.sidebar h3 {
   color: #333;
   margin-bottom: 20px;
 }
 
-p {
-  color: #666;
-  font-size: 1.1em;
+.nav-link {
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #e9ecef;
+  color: #007bff;
+}
+
+.nav-link i {
+  margin-right: 8px;
+}
+
+.task-list {
+  margin-top: 30px;
+}
+
+.list-group-item {
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+h3 {
+  color: #444;
+  margin-bottom: 20px;
 }

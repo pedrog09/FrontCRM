@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NavigationComponent } from '../shared/navigation/navigation.component';
+
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -7,7 +9,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-chatbot',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NavigationComponent],
+
 
   templateUrl: './chatbot.component.html',
   styleUrl: './chatbot.component.css'

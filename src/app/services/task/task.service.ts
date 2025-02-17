@@ -1,36 +1,52 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Task {
-  id: number;
-  title: string;
-  description: string;
-  dueDate: string;
-  status: string;
-}
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:5169/api/Tasks';
+  private apiUrl = 'http://localhost:5169/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private loginService: LoginService
+  ) {}
 
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl);
+  private getHeaders(): HttpHeaders {
+    const token = this.loginService.getToken();
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
   }
 
-  createTask(task: Task): Observable<Task> {
-    return this.http.post<Task>(this.apiUrl, task);
+  getTasks(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Tarefa`, { headers: this.getHeaders() });
   }
 
-  updateTask(task: Task): Observable<Task> {
-    return this.http.put<Task>(`${this.apiUrl}/${task.id}`, task);
+  createTask(task: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/Tarefa`, {
+      name: task.name,
+      description: task.description,
+      status: task.status,
+      usuarioId: task.usuarioId,
+      ending: task.ending
+    }, { headers: this.getHeaders() });
   }
 
-  deleteTask(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  updateTask(task: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/Tarefa/${task.id}`, {
+      id: task.id,
+      name: task.name,
+      description: task.description,
+      status: task.status,
+      usuarioId: task.usuarioId,
+      ending: task.ending
+    }, { headers: this.getHeaders() });
+  }
+
+  deleteTask(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/Tarefa/${id}`, { headers: this.getHeaders() });
   }
 }

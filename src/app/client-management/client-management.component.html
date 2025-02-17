@@ -1,48 +1,52 @@
-<div class="client-management-container">
-  <h1>Gerenciamento de Clientes</h1>
+<div class="client-management-container" style="background-color: #f4f4f4; min-height: 100vh;">
   <div class="row">
-    <div class="col-md-6">
-      <h2>Lista de Clientes</h2>
+    <div class="col-md-3">
+      <app-navigation></app-navigation>
+    </div>
+    <div class="col-md-9 p-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Clientes</h1>
+        <button class="btn btn-primary" (click)="openCreateModal()">
+          <i class="bi bi-plus-lg"></i> Novo
+        </button>
+      </div>
+
+
+  <div class="card shadow-sm">
+    <div class="card-body">
       <div *ngIf="clients.length > 0; else noClients">
-        <div class="list-group">
-          <div *ngFor="let client of clients" class="list-group-item">
-            <div class="d-flex justify-content-between">
-              <div>
-                <h5>{{ client.name }}</h5>
-                <p class="mb-1">{{ client.email }}</p>
-                <small>{{ client.phone }}</small>
-              </div>
-              <div>
-                <button class="btn btn-sm btn-outline-primary me-2">Editar</button>
-                <button class="btn btn-sm btn-outline-danger">Excluir</button>
-              </div>
-            </div>
-          </div>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th class="text-end">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let client of clients">
+                <td>{{ client.name }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.phone }}</td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditModal(client)">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="confirmDelete(client)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <ng-template #noClients>
-        <div class="alert alert-info">Nenhum cliente cadastrado.</div>
+        <div class="alert alert-info mb-0">Nenhum cliente cadastrado.</div>
       </ng-template>
     </div>
-    <div class="col-md-6">
-      <h2>Adicionar Novo Cliente</h2>
-      <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label for="name" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="name" formControlName="name">
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" formControlName="email">
-        </div>
-        <div class="mb-3">
-          <label for="phone" class="form-label">Telefone</label>
-          <input type="tel" class="form-control" id="phone" formControlName="phone">
-        </div>
-        <button type="submit" class="btn btn-primary" [disabled]="clientForm.invalid">
-          Cadastrar Cliente
-        </button>
-      </form>
-    </div>
   </div>
+
 </div>

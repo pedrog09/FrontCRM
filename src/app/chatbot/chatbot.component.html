@@ -1,5 +1,11 @@
 <div class="chatbot-container">
-  <h1>Chatbot</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <app-navigation></app-navigation>
+    </div>
+    <div class="col-md-9">
+      <h1>Chatbot</h1>
+
   <div class="chat-window">
     <div *ngFor="let message of messages" class="message" [ngClass]="{'user': message.isUser, 'bot': !message.isUser}">
       {{ message.text }}

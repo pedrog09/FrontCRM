@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ isEditMode ? 'Editar Tarefa' : 'Nova Tarefa' }}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="taskForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="name" formControlName="name"
+             [ngClass]="{'is-invalid': taskForm.get('name')?.invalid && taskForm.get('name')?.touched}">
+      <div class="invalid-feedback" *ngIf="taskForm.get('name')?.invalid && taskForm.get('name')?.touched">
+        Nome é obrigatório
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Descrição</label>
+      <textarea class="form-control" id="description" formControlName="description"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <select class="form-select" id="status" formControlName="status">
+        <option value="1">Pendente</option>
+        <option value="2">Em Progresso</option>
+        <option value="3">Concluída</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="ending" class="form-label">Prazo</label>
+      <input type="date" class="form-control" id="ending" formControlName="ending"
+             [ngClass]="{'is-invalid': taskForm.get('ending')?.invalid && taskForm.get('ending')?.touched}">
+      <div class="invalid-feedback" *ngIf="taskForm.get('ending')?.invalid && taskForm.get('ending')?.touched">
+        Prazo é obrigatório
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="dismiss()">Cancelar</button>
+  <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="taskForm.invalid">
+    {{ isEditMode ? 'Salvar' : 'Criar' }}
+  </button>
+</div>

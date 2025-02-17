@@ -41,13 +41,39 @@ export class LoginComponent {
   }
 
   submit(){
-    this.loginService.login(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value).subscribe({
-      next:(jwt:any)=>{
-        console.log(jwt);
-        this.router.navigate(['/summary']);
+    const username = this.loginForm.get("username")?.value;
+    const password = this.loginForm.get("password")?.value;
+    
+    if (!username || !password) {
+      console.error('Username or password is empty');
+      return;
+    }
+
+    this.loginService.login(username, password).subscribe({
+      next:(token: string)=>{
+        if (token) {
+          this.loginService.storeToken(token);
+          this.router.navigate(['/summary'])
+            .then(() => console.log('Navigation to summary successful'))
+            .catch(err => console.error('Navigation failed:', err));
+        } else {
+          console.error('No token received in response');
+          alert('Erro no processo de autenticação. Tente novamente.');
+        }
       },
-      error:(err)=>{console.log(err.status, err.message)},
-    })
+
+      error:(err)=>{
+        console.error('Login failed:', err);
+        if (err.status === 401) {
+          alert('Credenciais inválidas. Por favor, tente novamente.');
+        } else {
+          alert('Erro ao fazer login. Tente novamente mais tarde.');
+        }
+      },
+    });
   }
+
+
+
 
 }

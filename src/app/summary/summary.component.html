@@ -1,4 +1,32 @@
 <div class="summary-container">
-  <h1>Resumo do Sistema</h1>
-  <p>Bem-vindo ao painel de resumo do CRM</p>
+  <div class="row">
+    <div class="col-md-3">
+      <app-navigation></app-navigation>
+    </div>
+    <div class="col-md-9">
+
+      <h1>Resumo do Sistema</h1>
+      <div class="task-list">
+        <h3>Suas Tarefas</h3>
+        <div *ngIf="tasks.length > 0; else noTasks">
+          <div class="list-group">
+            <div *ngFor="let task of tasks" class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <h5>{{ task.title }}</h5>
+                  <p class="mb-1">{{ task.description }}</p>
+                  <small>Vencimento: {{ task.dueDate | date:'dd/MM/yyyy' }}</small>
+                  <br>
+                  <small>Status: {{ task.status }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #noTasks>
+          <div class="alert alert-info">Nenhuma tarefa encontrada.</div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
 </div>

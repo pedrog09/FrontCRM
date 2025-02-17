@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ isEditMode ? 'Editar Cliente' : 'Novo Cliente' }}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="clientForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="name" formControlName="name" [ngClass]="{'is-invalid': clientForm.get('name')?.invalid && clientForm.get('name')?.touched}">
+      <div class="invalid-feedback" *ngIf="clientForm.get('name')?.invalid && clientForm.get('name')?.touched">
+        Nome é obrigatório
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid': clientForm.get('email')?.invalid && clientForm.get('email')?.touched}">
+      <div class="invalid-feedback" *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched">
+        Email inválido
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="tipo" class="form-label">Tipo</label>
+      <select class="form-select" id="tipo" formControlName="tipo">
+        <option value="Pessoa">Pessoa</option>
+        <option value="Empresa">Empresa</option>
+      </select>
+    </div>
+
+    <div class="mb-3" *ngIf="clientForm.get('tipo')?.value === 'Pessoa'">
+      <label for="cpf" class="form-label">CPF</label>
+      <input type="text" class="form-control" id="cpf" formControlName="cpf" [ngClass]="{'is-invalid': clientForm.get('cpf')?.invalid && clientForm.get('cpf')?.touched}">
+      <div class="invalid-feedback" *ngIf="clientForm.get('cpf')?.invalid && clientForm.get('cpf')?.touched">
+        CPF é obrigatório
+      </div>
+    </div>
+
+    <div class="mb-3" *ngIf="clientForm.get('tipo')?.value === 'Empresa'">
+      <label for="cnpj" class="form-label">CNPJ</label>
+      <input type="text" class="form-control" id="cnpj" formControlName="cnpj" [ngClass]="{'is-invalid': clientForm.get('cnpj')?.invalid && clientForm.get('cnpj')?.touched}">
+      <div class="invalid-feedback" *ngIf="clientForm.get('cnpj')?.invalid && clientForm.get('cnpj')?.touched">
+        CNPJ é obrigatório
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="dismiss()">Cancelar</button>
+  <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="clientForm.invalid">
+    {{ isEditMode ? 'Salvar' : 'Criar' }}
+  </button>
+</div>

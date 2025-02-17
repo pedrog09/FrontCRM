@@ -1,58 +1,54 @@
-<div class="task-management-container">
-  <h1>Gerenciamento de Tarefas</h1>
+<div class="task-management-container" style="background-color: #f4f4f4; min-height: 100vh;">
   <div class="row">
-    <div class="col-md-6">
-      <h2>Lista de Tarefas</h2>
+    <div class="col-md-3">
+      <app-navigation></app-navigation>
+    </div>
+    <div class="col-md-9 p-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Tarefas</h1>
+        <button class="btn btn-primary" (click)="openCreateModal()">
+          <i class="bi bi-plus-lg"></i> Nova Tarefa
+        </button>
+      </div>
+
+
+  <div class="card shadow-sm">
+    <div class="card-body">
       <div *ngIf="tasks.length > 0; else noTasks">
-        <div class="list-group">
-          <div *ngFor="let task of tasks" class="list-group-item">
-            <div class="d-flex justify-content-between">
-              <div>
-                <h5>{{ task.title }}</h5>
-                <p class="mb-1">{{ task.description }}</p>
-                <small>Vencimento: {{ task.dueDate | date:'dd/MM/yyyy' }}</small>
-                <br>
-                <small>Status: {{ task.status }}</small>
-              </div>
-              <div>
-                <button class="btn btn-sm btn-outline-primary me-2">Editar</button>
-                <button class="btn btn-sm btn-outline-danger">Excluir</button>
-              </div>
-            </div>
-          </div>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Status</th>
+                <th>Prazo</th>
+                <th class="text-end">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let task of tasks">
+                <td>{{ task.name }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.status === 1 ? 'Pendente' : task.status === 2 ? 'Em Progresso' : 'Concluída' }}</td>
+                <td>{{ task.ending | date:'dd/MM/yyyy' }}</td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditModal(task)">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="confirmDelete(task)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <ng-template #noTasks>
-        <div class="alert alert-info">Nenhuma tarefa cadastrada.</div>
+        <div class="alert alert-info mb-0">Nenhuma tarefa cadastrada.</div>
       </ng-template>
     </div>
-    <div class="col-md-6">
-      <h2>Adicionar Nova Tarefa</h2>
-      <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label for="title" class="form-label">Título</label>
-          <input type="text" class="form-control" id="title" formControlName="title">
-        </div>
-        <div class="mb-3">
-          <label for="description" class="form-label">Descrição</label>
-          <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
-        </div>
-        <div class="mb-3">
-          <label for="dueDate" class="form-label">Data de Vencimento</label>
-          <input type="date" class="form-control" id="dueDate" formControlName="dueDate">
-        </div>
-        <div class="mb-3">
-          <label for="status" class="form-label">Status</label>
-          <select class="form-select" id="status" formControlName="status">
-            <option value="Pendente">Pendente</option>
-            <option value="Em Andamento">Em Andamento</option>
-            <option value="Concluída">Concluída</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid">
-          Adicionar Tarefa
-        </button>
-      </form>
-    </div>
   </div>
+
 </div>
