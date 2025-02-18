@@ -1,17 +1,17 @@
 .sidebar {
-  background-color: #f8f9fa;
+  background-color: #001428;
   padding: 20px;
   border-radius: 8px;
   height: 100%;
 }
 
 .sidebar h3 {
-  color: #333;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
 .nav-link {
-  color: #333;
+  color: #ffffff;
   padding: 10px 15px;
   border-radius: 4px;
   margin-bottom: 5px;
@@ -21,7 +21,7 @@
 }
 
 .nav-link:hover {
-  background-color: #e9ecef;
+  background-color: #ffffff;
   color: #007bff;
 }
 

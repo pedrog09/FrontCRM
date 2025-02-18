@@ -2,18 +2,19 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  background-color: #292929;
 }
 
 h1 {
-  color: #333;
+  color: #ffffff;
   margin-bottom: 30px;
 }
 
 h2 {
-  color: #444;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
 .row {
-  margin-top: 20px;
+  margin-top: 30px;
 }

@@ -1,6 +1,19 @@
 <nav class="sidebar" style="position: fixed; top: 0; left: 0; bottom: 0; width: 250px; overflow-y: auto;">
-  <h3>Navegação</h3>
+  <div class="d-flex justify-content-between align-items-center p-3">
+    <h3 class="mb-0">Navegação</h3>
+    <div class="dropdown">
+      <button class="btn btn-link text-dark dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person-circle"></i>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+        <li><a class="dropdown-item" routerLink="/profile">Editar Perfil</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item text-danger" (click)="logout()">Sair</a></li>
+      </ul>
+    </div>
+  </div>
   <ul class="nav flex-column">
+
     <li class="nav-item">
       <a class="nav-link" routerLink="/summary" routerLinkActive="active">
         <i class="bi bi-house"></i> Resumo

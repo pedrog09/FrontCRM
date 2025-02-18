@@ -1,18 +1,36 @@
-<div class="chatbot-container">
-  <div class="row">
-    <div class="col-md-3">
-      <app-navigation></app-navigation>
-    </div>
-    <div class="col-md-9">
-      <h1>Chatbot</h1>
-
-  <div class="chat-window">
-    <div *ngFor="let message of messages" class="message" [ngClass]="{'user': message.isUser, 'bot': !message.isUser}">
-      {{ message.text }}
-    </div>
+<div class="row">
+  <div class="col-md-3">
+    <app-navigation></app-navigation>
   </div>
-  <div class="input-area">
-    <input type="text" [(ngModel)]="userInput" placeholder="Digite sua mensagem..." (keyup.enter)="sendMessage()" />
-    <button (click)="sendMessage()">Enviar</button>
+  <div class="col-md-9">
+    <div class="chat-container">
+      <div class="chat-header">
+        <h2>Chatbot do CRM</h2>
+      </div>
+
+      <div class="chat-messages">
+        <div *ngFor="let message of messages" class="message" [ngClass]="{'user': message.isUser, 'bot': !message.isUser}">
+          <div class="message-content">
+            {{ message.text }}
+          </div>
+        </div>
+        <div *ngIf="isLoading" class="loading-indicator">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Carregando...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input">
+        <input type="text" 
+               [(ngModel)]="userInput" 
+               placeholder="Digite sua mensagem..."
+               (keyup.enter)="sendMessage()"
+               [disabled]="isLoading">
+        <button (click)="sendMessage()" [disabled]="isLoading || !userInput.trim()">
+          <i class="bi bi-send"></i>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
