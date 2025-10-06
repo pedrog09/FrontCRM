@@ -1,6 +1,7 @@
 <div class="w-100 h-100 row align-items-center">
     <div class="col-4 mx-auto">  
-      <div [formGroup]="this.loginForm">
+      <div [formGroup]="this.loginForm" (keydown.enter)="checkForm()">
+
 
           <img src="https://t3.ftcdn.net/jpg/05/12/70/90/360_F_512709090_3J9HZRZg4GmB8S6i0yY9wQ6Z8X6Z8X6Z.jpg" alt="Logo" class="mb-4" style="width: 100px;">
 
@@ -15,7 +16,7 @@
           </div>
 
           <button class="btn btn-primary w-100 mb-2" (click)="checkForm()">Entrar</button>
-          <button class="btn btn-secondary w-100" routerLink="/register">
+          <button class="btn btn-secondary w-100" (click)="register()">
             Cadastrar
           </button>
       </div>

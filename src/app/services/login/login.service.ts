@@ -11,7 +11,7 @@ export class LoginService {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string) {
-    return this.http.post('http://localhost:5169/api/Authentication', {
+    return this.http.post('http://localhost:5169/api/Authentication/login', {
       userName: username,
       password: password
     }, { responseType: 'text' });

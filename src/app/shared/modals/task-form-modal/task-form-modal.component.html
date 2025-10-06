@@ -1,10 +1,11 @@
-<div class="modal-header">
+  <div class="modal-header">
   <h4 class="modal-title">{{ isEditMode ? 'Editar Tarefa' : 'Nova Tarefa' }}</h4>
   <button type="button" class="btn-close" aria-label="Close" (click)="dismiss()"></button>
 </div>
 
 <div class="modal-body">
-  <form [formGroup]="taskForm">
+  <form [formGroup]="taskForm" (keydown.enter)="onSubmit()">
+
     <div class="mb-3">
       <label for="name" class="form-label">Nome</label>
       <input type="text" class="form-control" id="name" formControlName="name"
@@ -26,6 +27,11 @@
         <option value="2">Em Progresso</option>
         <option value="3">Concluída</option>
       </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="usuarioid" class="form-label">UsuarioId</label>
+      <input class="form-control" id="usuarioid" formControlName="usuarioid">
     </div>
 
     <div class="mb-3">

@@ -24,7 +24,7 @@ export class TaskFormModalComponent {
       name: ['', Validators.required],
       description: [''],
       status: [1, Validators.required],
-      usuarioId: [0],
+      usuarioid: [],
       ending: ['', Validators.required]
     });
   }

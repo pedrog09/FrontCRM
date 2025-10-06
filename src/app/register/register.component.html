@@ -1,7 +1,8 @@
 
 <div class="w-100 h-100 row align-items-center">
     <div class="col-4 mx-auto">  
-      <div [formGroup]="this.registerForm">
+      <div [formGroup]="this.registerForm" (keydown.enter)="checkForm()">
+
   
           <img src="https://t3.ftcdn.net/jpg/05/12/70/90/360_F_512709095_o0bDOmbAUKf9ltb8Pw9eYdrkriemZ822.jpg" class="mb-4" height="57" width="72"/> 
           <h1 class="h3 mb-3 fw-normal">Faça seu registro!</h1>

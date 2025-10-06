@@ -4,7 +4,8 @@
 </div>
 
 <div class="modal-body">
-  <form [formGroup]="clientForm">
+  <form [formGroup]="clientForm" (keydown.enter)="onSubmit()">
+
     <div class="mb-3">
       <label for="name" class="form-label">Nome</label>
       <input type="text" class="form-control" id="name" formControlName="name" [ngClass]="{'is-invalid': clientForm.get('name')?.invalid && clientForm.get('name')?.touched}">

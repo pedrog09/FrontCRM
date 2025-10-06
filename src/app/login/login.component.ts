@@ -73,6 +73,12 @@ export class LoginComponent {
     });
   }
 
+  register(){
+    this.router.navigate(['/register'])
+      .then(() => console.log('Navigation to register successful'))
+      .catch(err => console.error('Navigation failed:', err));
+  }
+
 
 
 
